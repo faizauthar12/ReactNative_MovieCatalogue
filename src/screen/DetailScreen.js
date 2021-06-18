@@ -27,6 +27,7 @@ const DetailScreen =  ({route}) => {
     )
 }
 
+// TODO: Fix bad implementation of layout.
 const styles = StyleSheet.create({
     viewChild: {
         marginTop: 10,

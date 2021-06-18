@@ -48,6 +48,7 @@ const HomeScreen = ({ navigation }) => {
   )
 };
 
+// TODO: Fix bad implementation of layout.
 const styles = StyleSheet.create({
   viewStyles: {
     alignItems: "center"
