@@ -27,9 +27,10 @@ const HomeScreen = ({ navigation }) => {
               />
               <View style={styles.viewStylesChild1}>
                 <Text>
-                  <Text style={styles.textHighlight}>{item.name}</Text>({item.release})
+                  <Text style={styles.textHighlight}>{item.name}</Text>
                 </Text>
-                <Text numberOfLines={4}>
+                <Text>({item.release})</Text>
+                <Text numberOfLines={3}>
                   {item.desc}
                 </Text>
               </View>
