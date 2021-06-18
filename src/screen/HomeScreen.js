@@ -9,7 +9,7 @@ const windowHeight = Dimensions.get('window').height;
 //console.log(windowWidth);
 //console.log(windowHeight);
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.viewStyles}>
       <FlatList
@@ -20,7 +20,7 @@ const HomeScreen = () => {
           return(
             <TouchableOpacity 
               style={styles.Rectangle}
-              onPress={()=>{}}>
+              onPress={()=>{navigation.navigate("Detail")}}>
               <Image
                 style={styles.Image}
                 source={require('../../assets/movie.jpg')}
