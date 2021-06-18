@@ -20,7 +20,13 @@ const HomeScreen = ({ navigation }) => {
           return(
             <TouchableOpacity 
               style={styles.Rectangle}
-              onPress={()=>{navigation.navigate("Detail")}}>
+              onPress={()=>{
+                navigation.navigate(
+                  "Detail",
+                  {title: item.name, release: item.release, desc: item.desc}
+                )
+              }}
+            >
               <Image
                 style={styles.Image}
                 source={require('../../assets/movie.jpg')}

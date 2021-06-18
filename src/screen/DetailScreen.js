@@ -4,7 +4,9 @@ import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const DetailScreen =  () => {
+const DetailScreen =  ({route}) => {
+    //console.log(route);
+    
     return(
         <View >
             <Image
@@ -17,9 +19,9 @@ const DetailScreen =  () => {
                     source={require('../../assets/movie.jpg')}
                 />
                 <Text style={styles.textTitle}>
-                    <Text style={styles.textHighlight}>Movie name</Text> (year)
+                    <Text style={styles.textHighlight}>{route.params.title}</Text> ({route.params.release})
                 </Text>
-                <Text>Description goes here</Text>
+                <Text>{route.params.desc}</Text>
             </View>
         </View>
     )
