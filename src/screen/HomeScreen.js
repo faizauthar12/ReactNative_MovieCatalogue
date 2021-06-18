@@ -43,7 +43,6 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   viewStyles: {
-    backgroundColor: "white",
     alignItems: "center"
   },
   viewStylesChild1: {
