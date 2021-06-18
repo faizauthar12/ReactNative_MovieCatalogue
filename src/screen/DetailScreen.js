@@ -1,16 +1,55 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const DetailScreen =  () => {
     return(
-        <View>
-            <Text>
-                Detail Screen
-            </Text>
+        <View >
+            <Image
+                style={styles.imageBackground}
+                source={require('../../assets/movie_background.jpg')}
+            />
+            <View style={styles.viewChild}>
+                <Image
+                    style={styles.imageStyles}
+                    source={require('../../assets/movie.jpg')}
+                />
+                <Text style={styles.textTitle}>
+                    <Text style={styles.textHighlight}>Movie name</Text> (year)
+                </Text>
+                <Text>Description goes here</Text>
+            </View>
         </View>
     )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    viewChild: {
+        marginTop: 10,
+        marginStart: 30,
+        marginEnd: 30
+    },
+    imageStyles: {
+        width: windowWidth/3,
+        height: windowWidth/2,
+        justifyContent: 'center',
+        borderRadius: 5,
+        marginBottom: 20
+    },
+    imageBackground: {
+        position: "absolute",
+        width: windowWidth,
+        height: windowHeight/3.3,
+        opacity: 0.4
+    },
+    textTitle: {
+        fontSize: 30
+    },
+    textHighlight: {
+        fontWeight: "700"
+    }
+});
 
 export default DetailScreen;
