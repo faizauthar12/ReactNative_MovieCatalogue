@@ -11,12 +11,12 @@ const DetailScreen =  ({route}) => {
         <View >
             <Image
                 style={styles.imageBackground}
-                source={require('../../assets/movie_background.jpg')}
+                source={{uri: route.params.poster}}
             />
             <View style={styles.viewChild}>
                 <Image
                     style={styles.imageStyles}
-                    source={require('../../assets/movie.jpg')}
+                    source={{uri: route.params.poster}}
                 />
                 <Text style={styles.textTitle}>
                     <Text style={styles.textHighlight}>{route.params.title}</Text> ({route.params.release})

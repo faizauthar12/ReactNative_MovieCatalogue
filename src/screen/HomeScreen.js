@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions, Image} from "react-native";
-import Movies from "../dummy/MoviesData";
+
+import axios from "axios";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const api_key = "1110d80a15a91f4772f9806279f2affa";
+const BASE_URL = "https://api.themoviedb.org/3";
+const getImage = (path) => `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${path}`;
 
 // debugging
 //console.log(windowWidth);
 //console.log(windowHeight);
 
 const HomeScreen = ({ navigation }) => {
+  const [data, setData] = useState([]);
+
+  const api = axios.create({ baseURL: BASE_URL });
+
+  const getUpcoming = api.get("movie/popular", { params: { api_key } });
+
+  useEffect(() => {
+    getUpcoming.then((res) => {
+      setData(res.data.results);
+    });
+  }, []);
+  
   return (
     <View style={styles.viewStyles}>
       <FlatList
-        data={Movies}
-        keyExtractor={Movie => Movie.name}
+        data={data}
+        keyExtractor={Movie => Movie.title}
 
         renderItem={({ item }) => {
           return(
@@ -23,21 +40,21 @@ const HomeScreen = ({ navigation }) => {
               onPress={()=>{
                 navigation.navigate(
                   "Detail",
-                  {title: item.name, release: item.release, desc: item.desc}
+                  {title: item.title, release: item.release_date, desc: item.overview, poster: getImage(item.poster_path)}
                 )
               }}
             >
               <Image
                 style={styles.Image}
-                source={require('../../assets/movie.jpg')}
+                source={{uri: getImage(item.poster_path)}}
               />
               <View style={styles.viewStylesChild1}>
                 <Text>
-                  <Text style={styles.textHighlight}>{item.name}</Text>
+                  <Text style={styles.textHighlight}>{item.title}</Text>
                 </Text>
-                <Text>({item.release})</Text>
+                <Text>({item.release_date})</Text>
                 <Text numberOfLines={3}>
-                  {item.desc}
+                  {item.overview}
                 </Text>
               </View>
             </TouchableOpacity>
